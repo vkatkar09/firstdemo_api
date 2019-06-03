@@ -108,6 +108,38 @@ exports.getToDoList = function(req, res, next) {
     })
 }
 
+exports.deleteFromList = function(req, res, next) {
+    var name  = req.body.name;
+    fs.readFile('/Users/dashuduc/Documents/varsha/api/api/releases/todolist.json', 'utf8',(err, fileContent) => {
+        if( err ) {
+            res.json({"sucess": "false"});
+        } else {
+          data = JSON.parse(fileContent.toString());
+          for (var i = 0; i < data.length; i++) {
+            if (data[i].name == name)
+            {
+                console.log(data[i].name);
+              data.splice(i,1)
+              fs.writeFile ("/Users/dashuduc/Documents/varsha/api/api/releases/todolist.json", JSON.stringify(data), function(err) {
+                if (err) throw err;
+                console.log('complete');
+                })
+            }
+          }
+        //   data.forEach(function(list){
+        //       console.log(list);
+        //     if(list.name == name){
+        //         data.pop(list)
+        //     }
+        //   })
+          
+        }
+
+    })
+    res.json({"sucess": "true"});
+}
+
+
 /*
 Varsha's controller functions end
 */

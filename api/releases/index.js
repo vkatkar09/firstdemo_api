@@ -20,6 +20,8 @@ router.route('/register')
 router.route('/notes')
     .get(controller.getToDoList);
 
+router.route('/notes')
+    .delete(controller.deleteFromList);
 
 router.route('/notes')
     .post(controller.addToList);
