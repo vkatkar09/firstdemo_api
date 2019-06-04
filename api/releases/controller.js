@@ -110,6 +110,7 @@ exports.getToDoList = function(req, res, next) {
 
 exports.deleteFromList = function(req, res, next) {
     var name  = req.body.name;
+    console.log(req.body)
     fs.readFile('/Users/dashuduc/Documents/varsha/api/api/releases/todolist.json', 'utf8',(err, fileContent) => {
         if( err ) {
             res.json({"sucess": "false"});
