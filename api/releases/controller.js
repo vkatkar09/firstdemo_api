@@ -5,7 +5,7 @@ const fs = require('fs');
 Varsha's controller functions
 */
 
-var commonPath= "C:\\firstdemo_api\\"
+var commonPath= "C:\\firstdemo_api"
 exports.getUser = function (req, res, next) {
     var username = req.params.username;
     var password = req.params.password;
