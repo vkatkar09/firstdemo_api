@@ -5,7 +5,7 @@ const fs = require('fs');
 Varsha's controller functions
 */
 
-var commonPath= "/Users/dashuduc/Documents/varsha/api"
+var commonPath= "C:\\firstdemo_api\\"
 exports.getUser = function (req, res, next) {
     var username = req.params.username;
     var password = req.params.password;
@@ -41,7 +41,7 @@ exports.login = function (req, res, next) {
     })
 }
 exports.getHistory = function(req, res){
-    fs.readFile(commonPath + '/api/releases/history.json', 'utf8', (err, fileContent) => {
+    fs.readFile(commonPath + 'api\\releases\\history.json', 'utf8', (err, fileContent) => {
         if (err) {
         } else {
             data = JSON.parse(fileContent.toString());
@@ -52,13 +52,13 @@ exports.getHistory = function(req, res){
 
 exports.saveData = function (req, res) {
     console.log(req.body)
-    fs.readFile(commonPath + '/api/releases/history.json', 'utf8', (err, fileContent) => {
+    fs.readFile(commonPath + 'api\\releases\\history.json', 'utf8', (err, fileContent) => {
         if (err) {
         } else {
             data = JSON.parse(fileContent.toString());
             data.push(req.body);
 
-            fs.writeFile(commonPath + "/api/releases/history.json", JSON.stringify(data), function (err) {
+            fs.writeFile(commonPath + "api\\releases\\history.json", JSON.stringify(data), function (err) {
                 if (err) throw err;
                 console.log('complete');
                 res.json({ "sucess": "true" });
@@ -81,13 +81,13 @@ exports.register = function (req, res) {
         "contact": contact
     }
 
-    fs.readFile(commonPath + '/api/releases/users.json', 'utf8', (err, fileContent) => {
+    fs.readFile(commonPath + 'api\\releases\\users.json', 'utf8', (err, fileContent) => {
         if (err) {
         } else {
             data = JSON.parse(fileContent.toString());
             console.log(fileContent);
             data.push(userObject);
-            fs.writeFile(commonPath + "/api/releases/users.json", JSON.stringify(data), function (err) {
+            fs.writeFile(commonPath + "api\\releases\\users.json", JSON.stringify(data), function (err) {
                 if (err) throw err;
                 console.log('complete');
                 res.json({ "sucess": "true" });
@@ -107,12 +107,12 @@ exports.addToList = function (req, res, next) {
         "description": description
     }
 
-    fs.readFile(commonPath + '/api/releases/todolist.json', 'utf8', (err, fileContent) => {
+    fs.readFile(commonPath + 'api\\releases\\todolist.json', 'utf8', (err, fileContent) => {
         if (err) {
         } else {
             data = JSON.parse(fileContent.toString());
             data.push(list);
-            fs.writeFile(commonPath + "/api/releases/todolist.json", JSON.stringify(data), function (err) {
+            fs.writeFile(commonPath + "api\\releases\\todolist.json", JSON.stringify(data), function (err) {
                 if (err) throw err;
                 console.log('complete');
                 res.json({ "sucess": "true" });
@@ -122,7 +122,7 @@ exports.addToList = function (req, res, next) {
 }
 
 exports.getToDoList = function (req, res, next) {
-    fs.readFile(commonPath + '/api/releases/todolist.json', 'utf8', (err, fileContent) => {
+    fs.readFile(commonPath + 'api\\releases\\todolist.json', 'utf8', (err, fileContent) => {
         if (err) {
 
         } else {
@@ -137,7 +137,7 @@ exports.getToDoList = function (req, res, next) {
 exports.deleteFromList = function (req, res, next) {
     var name = req.body.name;
     console.log(req.body)
-    fs.readFile(commonPath + '/api/releases/todolist.json', 'utf8', (err, fileContent) => {
+    fs.readFile(commonPath + 'api\\releases\\todolist.json', 'utf8', (err, fileContent) => {
         if (err) {
             res.json({ "sucess": "false" });
         } else {
@@ -146,7 +146,7 @@ exports.deleteFromList = function (req, res, next) {
                 if (data[i].name == name) {
                     console.log(data[i].name);
                     data.splice(i, 1)
-                    fs.writeFile(commonPath + "/api/releases/todolist.json", JSON.stringify(data), function (err) {
+                    fs.writeFile(commonPath + "api\\releases\\todolist.json", JSON.stringify(data), function (err) {
                         if (err) throw err;
                         console.log('complete');
                     })
